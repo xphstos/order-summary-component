@@ -1,0 +1,159 @@
+@use './functions' as *;
+@use './mixins' as *;
+@use "sass:color" as *;
+
+::selection {
+	background-color: currentColor;
+}
+
+%container {
+	padding: 0 max(1.5rem, 50vw - 450px / 2);
+}
+
+html {
+	font-size: 16px;
+}
+
+body {
+	font: 500 1rem / 1.5 "Red Hat Display", sans-serif;
+	height: 100%;
+	background-color: v("blue-pale");
+	color: v("blue-dark");
+}
+
+main {
+	min-height: 100%;
+	display: grid;
+	place-items: center;
+	padding: 4.5rem 0;
+}
+
+@for $i from 1 through 6 {
+	h#{$i} {
+		font-weight: 700;
+	}
+}
+
+.order {
+	inline-size: min(28rem, 100vw - 3rem);
+	border-radius: 1.25rem;
+	background-color: v("white");
+	text-align: center;
+	overflow: hidden;
+	box-shadow: 0 0.75rem 2rem -1.5rem v("blue-desaturated");
+	transition: box-shadow 0.2s ease;
+
+	&:hover {
+		box-shadow: 0 1rem 2rem -1rem v("blue-desaturated");
+	}
+
+	&__image {
+		@include ar(450, 220);
+		background: url("../images/illustration-hero.svg") no-repeat top / cover;
+	}
+
+	&__body {
+		padding: size(24px, 48px, 768);
+		padding-bottom: 0;
+
+		> * + * {
+			margin-top: size(24px, 32px, 768);
+		}
+	}
+
+	&__title {
+		font-weight: 900;
+		font-size: size(20px, 30px, 768px);
+		line-height: 1.2;
+	}
+
+	&__description {
+		color: v(blue-desaturated);
+	}
+
+	&__footer {
+		padding: size(24px, 48px, 768);
+		padding-top: size(24px, 32px, 768);
+	}
+
+	&__cancel {
+		margin-top: 1rem;
+	}
+}
+
+.plan {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1.5rem;
+	padding: size(16px, 24px, 768);
+	text-align: left;
+	border-radius: 1rem;
+	background-color: v("blue-white");
+
+	@media screen and (max-width: 374px) {
+		flex-wrap: wrap;
+	}
+
+	&__type {
+		@media screen and (max-width: 374px) {
+			display: none;
+		}
+	}
+
+	&__title {
+		font-size: 1rem;
+		white-space: nowrap;
+	}
+
+	&__price {
+		color: v("blue-desaturated");
+	}
+
+	&__edit {
+		text-decoration: underline;
+		color: v("blue-bright");
+		transition: color 0.2s ease;
+		margin-left: auto;
+		font-size: 0.85rem;
+
+		@media screen and (max-width: 374px) {
+			margin-left: unset;
+		}
+
+		&:hover {
+			text-decoration: none;
+			color: adjust(c("blue-bright"), $lightness: 20%);
+		}
+	}
+}
+
+.btn {
+	display: block;
+	width: 100%;
+	height: 3.5rem;
+	text-align: center;
+	cursor: pointer;
+	border-radius: 0.5rem;
+	font-weight: 700;
+
+	&--primary {
+		color: v("white");
+		background-color: v("blue-bright");
+		box-shadow: 0 1rem 2rem 0 adjust(c("blue-bright"), $alpha: -0.7);
+		transition: background-color 0.2s ease;
+
+		&:hover {
+			background-color: adjust(c("blue-bright"), $lightness: 20%);
+		}
+	}
+
+	&--clear {
+		color: adjust(c("blue-dark"), $alpha: -0.3);
+		transition: color 0.2s ease;
+
+		&:hover {
+			color: v("blue-dark");
+		}
+	}
+}

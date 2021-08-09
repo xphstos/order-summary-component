@@ -1,0 +1,62 @@
+@use './variables' as v;
+
+// Project Variables
+:root {
+	@each $name, $color in v.$colors {
+		--#{$name}: #{$color};
+	}
+}
+
+// Project Defaults
+* {
+	box-sizing: border-box;
+
+	&:before,
+	&:after {
+		box-sizing: border-box;
+	}
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+}
+
+@for $i from 1 through 6 {
+	h#{$i} {
+		margin: 0;
+	}
+}
+
+p {
+	margin: 0;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+img,
+svg {
+	vertical-align: middle;
+}
+
+ul {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+button {
+	all: unset;
+	-webkit-appearance: none;
+
+	&:focus {
+		outline: none;
+	}
+}
